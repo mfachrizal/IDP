@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDP Level 1</title>
+</head>
+
+<body>
+    <h1>ToDo List</h1>
+    <input type="text" id="task" name="task" placeholder="Masukkan tugas" />
+    <button id="btnAddTask" type="button" onclick="addTask()">Tambah</button>
+    <ul id="list">
+    </ul>
+    <p>Total Tugas Belum Selesai : 0</p>
+    <button id="btnCheckAll" type="button" onclick="addTask()">Tandai semua selesai</button>
+    <button id="btnRemoveAll" type="button" onclick="removeAllTask()">Hapus Semua</button>
+    <script type="text/javascript">
+        function addTask() {
+            let task = document.getElementById("task").value;
+            if (task == '') {
+                alert('Task Tidak Boleh Kosong');
+                return;
+            }
+            let ul = document.getElementById("list");
+            let li = document.createElement("li");
+
+            let checkbox = document.createElement("INPUT");
+            checkbox.setAttribute("type", "checkbox");
+            checkbox.setAttribute("id", "chk-task");
+            checkbox.addEventListener('change', (event) => {
+                if (event.currentTarget.checked) {
+                    // alert('checked');
+                    // console.log((event.target.labels[0].strike));
+                    //event.currentTarget.label.innerHTML = 'asdad';
+                } else {
+                    // $(event.currentTarget.innerHTML = '');
+                }
+            });
+
+            // let textTask = document.createElement('p');
+            // let textTaskNode = document.createTextNode(document.getElementById("task").value);
+            // textTask.appendChild(textTaskNode);
+
+            let label = document.createElement('label');
+            label.htmlFor = 'chk-task';
+            label.appendChild(document.createTextNode(document.getElementById("task").value));
+
+            let button = document.createElement("button");
+            button.innerHTML = "Hapus";
+            button.onclick = function () {
+                li.remove();
+            };
+
+            li.appendChild(checkbox);
+            // li.appendChild(document.createTextNode(document.getElementById("task").value));
+            li.appendChild(label);
+            li.appendChild(document.createTextNode(' '));
+            li.appendChild(button);
+            ul.appendChild(li);
+        }
+
+        function removeAllTask() {
+            document.getElementById("list").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>
