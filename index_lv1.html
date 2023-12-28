@@ -29,13 +29,15 @@
             let checkbox = document.createElement("INPUT");
             checkbox.setAttribute("type", "checkbox");
             checkbox.setAttribute("id", "chk-task");
+            checkbox.setAttribute("class", "chk-task");
             checkbox.addEventListener('change', (event) => {
                 if (event.currentTarget.checked) {
-                    // alert('checked');
-                    // console.log((event.target.labels[0].strike));
-                    //event.currentTarget.label.innerHTML = 'asdad';
+                    let thisText = event.target.labels[0].textContent;
+                    event.target.labels[0].innerHTML = '<del>' + thisText + '</del>';
                 } else {
-                    // $(event.currentTarget.innerHTML = '');
+                    let thisText = event.target.labels[0].textContent;
+                    console.log(thisText);
+                    event.target.labels[0].innerHTML = thisText;
                 }
             });
 
@@ -45,6 +47,7 @@
 
             let label = document.createElement('label');
             label.htmlFor = 'chk-task';
+            label.setAttribute("class", "class-task");
             label.appendChild(document.createTextNode(document.getElementById("task").value));
 
             let button = document.createElement("button");
